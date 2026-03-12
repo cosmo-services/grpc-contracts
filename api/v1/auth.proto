@@ -9,7 +9,7 @@ service AuthService {
   // Get user data by id  
   rpc GetUserById(GetUserByIdRequest) returns (GetUserResponse);
   // Get user data by username
-  rpc GetUserByusername(GetUserByUsernameRequest) returns (GetUserResponse);
+  rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserResponse);
 }
 
 message GetUserByIdRequest {

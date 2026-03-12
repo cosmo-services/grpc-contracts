@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	AuthService_GetUserById_FullMethodName       = "/api.v1.AuthService/GetUserById"
-	AuthService_GetUserByusername_FullMethodName = "/api.v1.AuthService/GetUserByusername"
+	AuthService_GetUserByUsername_FullMethodName = "/api.v1.AuthService/GetUserByUsername"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -32,7 +32,7 @@ type AuthServiceClient interface {
 	// Get user data by id
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
 	// Get user data by username
-	GetUserByusername(ctx context.Context, in *GetUserByUsernameRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
+	GetUserByUsername(ctx context.Context, in *GetUserByUsernameRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
 }
 
 type authServiceClient struct {
@@ -53,10 +53,10 @@ func (c *authServiceClient) GetUserById(ctx context.Context, in *GetUserByIdRequ
 	return out, nil
 }
 
-func (c *authServiceClient) GetUserByusername(ctx context.Context, in *GetUserByUsernameRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
+func (c *authServiceClient) GetUserByUsername(ctx context.Context, in *GetUserByUsernameRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserResponse)
-	err := c.cc.Invoke(ctx, AuthService_GetUserByusername_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthService_GetUserByUsername_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,7 +72,7 @@ type AuthServiceServer interface {
 	// Get user data by id
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserResponse, error)
 	// Get user data by username
-	GetUserByusername(context.Context, *GetUserByUsernameRequest) (*GetUserResponse, error)
+	GetUserByUsername(context.Context, *GetUserByUsernameRequest) (*GetUserResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -86,8 +86,8 @@ type UnimplementedAuthServiceServer struct{}
 func (UnimplementedAuthServiceServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserById not implemented")
 }
-func (UnimplementedAuthServiceServer) GetUserByusername(context.Context, *GetUserByUsernameRequest) (*GetUserResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetUserByusername not implemented")
+func (UnimplementedAuthServiceServer) GetUserByUsername(context.Context, *GetUserByUsernameRequest) (*GetUserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserByUsername not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -128,20 +128,20 @@ func _AuthService_GetUserById_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GetUserByusername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_GetUserByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserByUsernameRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetUserByusername(ctx, in)
+		return srv.(AuthServiceServer).GetUserByUsername(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetUserByusername_FullMethodName,
+		FullMethod: AuthService_GetUserByUsername_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetUserByusername(ctx, req.(*GetUserByUsernameRequest))
+		return srv.(AuthServiceServer).GetUserByUsername(ctx, req.(*GetUserByUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -158,8 +158,8 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthService_GetUserById_Handler,
 		},
 		{
-			MethodName: "GetUserByusername",
-			Handler:    _AuthService_GetUserByusername_Handler,
+			MethodName: "GetUserByUsername",
+			Handler:    _AuthService_GetUserByUsername_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
