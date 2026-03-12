@@ -23,7 +23,7 @@ const (
 
 type GetUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -58,9 +58,9 @@ func (*GetUserRequest) Descriptor() ([]byte, []int) {
 	return file_v1_auth_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetUserRequest) GetToken() string {
+func (x *GetUserRequest) GetUserId() string {
 	if x != nil {
-		return x.Token
+		return x.UserId
 	}
 	return ""
 }
@@ -189,9 +189,9 @@ var File_v1_auth_proto protoreflect.FileDescriptor
 
 const file_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\rv1/auth.proto\x12\x06api.v1\"&\n" +
-	"\x0eGetUserRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"7\n" +
+	"\rv1/auth.proto\x12\x06api.v1\")\n" +
+	"\x0eGetUserRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"7\n" +
 	"\x0fGetUserResponse\x12$\n" +
 	"\x04user\x18\x01 \x01(\v2\x10.api.v1.UserDataR\x04user\"\x88\x01\n" +
 	"\bUserData\x12\x0e\n" +
