@@ -11,7 +11,7 @@ service AuthService {
 }
 
 message GetUserRequest {
-  string token = 1;
+  string user_id = 1;
 }
 
 message GetUserResponse {
