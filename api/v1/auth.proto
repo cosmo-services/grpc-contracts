@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package api.v1;
+
+option go_package = "github.com/cosmo-services/grpc-contracts/gen/api/v1";
+
+// Auth Service
+service AuthService {
+  // Get user data by id  
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+message GetUserRequest {
+  string token = 1;
+}
+
+message GetUserResponse {
+  UserData user = 1;
+}
+
+message UserData {
+  string id         = 1;
+  string email      = 2;
+  string username   = 3;
+  bool   is_active  = 4;
+  int64  created_at = 5;
+}
