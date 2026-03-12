@@ -1,0 +1,25 @@
+syntax = "proto3";
+package api.v1;
+
+option go_package = "github.com/cosmo-services/grpc-contracts/gen/api/v1";
+
+// Social service
+service SocialService {
+  // Get user profile by id
+  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
+}
+
+message GetUserProfileRequest {
+  string user_id = 1;
+}
+
+message GetUserProfileResponse {
+  UserProfile profile = 1;
+}
+
+message UserProfile {
+  string id = 1;
+  string username = 2;
+  string display_name = 3;
+  string avatar_url = 4;
+}
