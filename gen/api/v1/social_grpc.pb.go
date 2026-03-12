@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SocialService_GetUserProfile_FullMethodName = "/api.v1.SocialService/GetUserProfile"
+	SocialService_GetUserProfileByUserId_FullMethodName   = "/api.v1.SocialService/GetUserProfileByUserId"
+	SocialService_GetUserProfileByUsername_FullMethodName = "/api.v1.SocialService/GetUserProfileByUsername"
 )
 
 // SocialServiceClient is the client API for SocialService service.
@@ -29,7 +30,9 @@ const (
 // Social service
 type SocialServiceClient interface {
 	// Get user profile by id
-	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
+	GetUserProfileByUserId(ctx context.Context, in *GetUserProfileByIdRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
+	// Get user profile by username
+	GetUserProfileByUsername(ctx context.Context, in *GetUserProfileByUsernameRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
 }
 
 type socialServiceClient struct {
@@ -40,10 +43,20 @@ func NewSocialServiceClient(cc grpc.ClientConnInterface) SocialServiceClient {
 	return &socialServiceClient{cc}
 }
 
-func (c *socialServiceClient) GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error) {
+func (c *socialServiceClient) GetUserProfileByUserId(ctx context.Context, in *GetUserProfileByIdRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserProfileResponse)
-	err := c.cc.Invoke(ctx, SocialService_GetUserProfile_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SocialService_GetUserProfileByUserId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *socialServiceClient) GetUserProfileByUsername(ctx context.Context, in *GetUserProfileByUsernameRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserProfileResponse)
+	err := c.cc.Invoke(ctx, SocialService_GetUserProfileByUsername_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +70,9 @@ func (c *socialServiceClient) GetUserProfile(ctx context.Context, in *GetUserPro
 // Social service
 type SocialServiceServer interface {
 	// Get user profile by id
-	GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error)
+	GetUserProfileByUserId(context.Context, *GetUserProfileByIdRequest) (*GetUserProfileResponse, error)
+	// Get user profile by username
+	GetUserProfileByUsername(context.Context, *GetUserProfileByUsernameRequest) (*GetUserProfileResponse, error)
 	mustEmbedUnimplementedSocialServiceServer()
 }
 
@@ -68,8 +83,11 @@ type SocialServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedSocialServiceServer struct{}
 
-func (UnimplementedSocialServiceServer) GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetUserProfile not implemented")
+func (UnimplementedSocialServiceServer) GetUserProfileByUserId(context.Context, *GetUserProfileByIdRequest) (*GetUserProfileResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserProfileByUserId not implemented")
+}
+func (UnimplementedSocialServiceServer) GetUserProfileByUsername(context.Context, *GetUserProfileByUsernameRequest) (*GetUserProfileResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserProfileByUsername not implemented")
 }
 func (UnimplementedSocialServiceServer) mustEmbedUnimplementedSocialServiceServer() {}
 func (UnimplementedSocialServiceServer) testEmbeddedByValue()                       {}
@@ -92,20 +110,38 @@ func RegisterSocialServiceServer(s grpc.ServiceRegistrar, srv SocialServiceServe
 	s.RegisterService(&SocialService_ServiceDesc, srv)
 }
 
-func _SocialService_GetUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserProfileRequest)
+func _SocialService_GetUserProfileByUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserProfileByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SocialServiceServer).GetUserProfile(ctx, in)
+		return srv.(SocialServiceServer).GetUserProfileByUserId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SocialService_GetUserProfile_FullMethodName,
+		FullMethod: SocialService_GetUserProfileByUserId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SocialServiceServer).GetUserProfile(ctx, req.(*GetUserProfileRequest))
+		return srv.(SocialServiceServer).GetUserProfileByUserId(ctx, req.(*GetUserProfileByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SocialService_GetUserProfileByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserProfileByUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SocialServiceServer).GetUserProfileByUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SocialService_GetUserProfileByUsername_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SocialServiceServer).GetUserProfileByUsername(ctx, req.(*GetUserProfileByUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -118,8 +154,12 @@ var SocialService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SocialServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetUserProfile",
-			Handler:    _SocialService_GetUserProfile_Handler,
+			MethodName: "GetUserProfileByUserId",
+			Handler:    _SocialService_GetUserProfileByUserId_Handler,
+		},
+		{
+			MethodName: "GetUserProfileByUsername",
+			Handler:    _SocialService_GetUserProfileByUsername_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

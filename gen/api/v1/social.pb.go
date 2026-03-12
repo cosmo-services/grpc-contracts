@@ -21,27 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetUserProfileRequest struct {
+type GetUserProfileByIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetUserProfileRequest) Reset() {
-	*x = GetUserProfileRequest{}
+func (x *GetUserProfileByIdRequest) Reset() {
+	*x = GetUserProfileByIdRequest{}
 	mi := &file_v1_social_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetUserProfileRequest) String() string {
+func (x *GetUserProfileByIdRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserProfileRequest) ProtoMessage() {}
+func (*GetUserProfileByIdRequest) ProtoMessage() {}
 
-func (x *GetUserProfileRequest) ProtoReflect() protoreflect.Message {
+func (x *GetUserProfileByIdRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_v1_social_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,14 +53,58 @@ func (x *GetUserProfileRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserProfileRequest.ProtoReflect.Descriptor instead.
-func (*GetUserProfileRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserProfileByIdRequest.ProtoReflect.Descriptor instead.
+func (*GetUserProfileByIdRequest) Descriptor() ([]byte, []int) {
 	return file_v1_social_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetUserProfileRequest) GetUserId() string {
+func (x *GetUserProfileByIdRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+type GetUserProfileByUsernameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserProfileByUsernameRequest) Reset() {
+	*x = GetUserProfileByUsernameRequest{}
+	mi := &file_v1_social_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserProfileByUsernameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserProfileByUsernameRequest) ProtoMessage() {}
+
+func (x *GetUserProfileByUsernameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_social_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserProfileByUsernameRequest.ProtoReflect.Descriptor instead.
+func (*GetUserProfileByUsernameRequest) Descriptor() ([]byte, []int) {
+	return file_v1_social_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetUserProfileByUsernameRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
 	}
 	return ""
 }
@@ -74,7 +118,7 @@ type GetUserProfileResponse struct {
 
 func (x *GetUserProfileResponse) Reset() {
 	*x = GetUserProfileResponse{}
-	mi := &file_v1_social_proto_msgTypes[1]
+	mi := &file_v1_social_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +130,7 @@ func (x *GetUserProfileResponse) String() string {
 func (*GetUserProfileResponse) ProtoMessage() {}
 
 func (x *GetUserProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_social_proto_msgTypes[1]
+	mi := &file_v1_social_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +143,7 @@ func (x *GetUserProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserProfileResponse.ProtoReflect.Descriptor instead.
 func (*GetUserProfileResponse) Descriptor() ([]byte, []int) {
-	return file_v1_social_proto_rawDescGZIP(), []int{1}
+	return file_v1_social_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetUserProfileResponse) GetProfile() *UserProfile {
@@ -121,7 +165,7 @@ type UserProfile struct {
 
 func (x *UserProfile) Reset() {
 	*x = UserProfile{}
-	mi := &file_v1_social_proto_msgTypes[2]
+	mi := &file_v1_social_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -133,7 +177,7 @@ func (x *UserProfile) String() string {
 func (*UserProfile) ProtoMessage() {}
 
 func (x *UserProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_social_proto_msgTypes[2]
+	mi := &file_v1_social_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +190,7 @@ func (x *UserProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserProfile.ProtoReflect.Descriptor instead.
 func (*UserProfile) Descriptor() ([]byte, []int) {
-	return file_v1_social_proto_rawDescGZIP(), []int{2}
+	return file_v1_social_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *UserProfile) GetId() string {
@@ -181,9 +225,11 @@ var File_v1_social_proto protoreflect.FileDescriptor
 
 const file_v1_social_proto_rawDesc = "" +
 	"\n" +
-	"\x0fv1/social.proto\x12\x06api.v1\"0\n" +
-	"\x15GetUserProfileRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"G\n" +
+	"\x0fv1/social.proto\x12\x06api.v1\"4\n" +
+	"\x19GetUserProfileByIdRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"=\n" +
+	"\x1fGetUserProfileByUsernameRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"G\n" +
 	"\x16GetUserProfileResponse\x12-\n" +
 	"\aprofile\x18\x01 \x01(\v2\x13.api.v1.UserProfileR\aprofile\"{\n" +
 	"\vUserProfile\x12\x0e\n" +
@@ -191,9 +237,10 @@ const file_v1_social_proto_rawDesc = "" +
 	"\busername\x18\x02 \x01(\tR\busername\x12!\n" +
 	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x1d\n" +
 	"\n" +
-	"avatar_url\x18\x04 \x01(\tR\tavatarUrl2`\n" +
-	"\rSocialService\x12O\n" +
-	"\x0eGetUserProfile\x12\x1d.api.v1.GetUserProfileRequest\x1a\x1e.api.v1.GetUserProfileResponseB5Z3github.com/cosmo-services/grpc-contracts/gen/api/v1b\x06proto3"
+	"avatar_url\x18\x04 \x01(\tR\tavatarUrl2\xd1\x01\n" +
+	"\rSocialService\x12[\n" +
+	"\x16GetUserProfileByUserId\x12!.api.v1.GetUserProfileByIdRequest\x1a\x1e.api.v1.GetUserProfileResponse\x12c\n" +
+	"\x18GetUserProfileByUsername\x12'.api.v1.GetUserProfileByUsernameRequest\x1a\x1e.api.v1.GetUserProfileResponseB5Z3github.com/cosmo-services/grpc-contracts/gen/api/v1b\x06proto3"
 
 var (
 	file_v1_social_proto_rawDescOnce sync.Once
@@ -207,18 +254,21 @@ func file_v1_social_proto_rawDescGZIP() []byte {
 	return file_v1_social_proto_rawDescData
 }
 
-var file_v1_social_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_v1_social_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_v1_social_proto_goTypes = []any{
-	(*GetUserProfileRequest)(nil),  // 0: api.v1.GetUserProfileRequest
-	(*GetUserProfileResponse)(nil), // 1: api.v1.GetUserProfileResponse
-	(*UserProfile)(nil),            // 2: api.v1.UserProfile
+	(*GetUserProfileByIdRequest)(nil),       // 0: api.v1.GetUserProfileByIdRequest
+	(*GetUserProfileByUsernameRequest)(nil), // 1: api.v1.GetUserProfileByUsernameRequest
+	(*GetUserProfileResponse)(nil),          // 2: api.v1.GetUserProfileResponse
+	(*UserProfile)(nil),                     // 3: api.v1.UserProfile
 }
 var file_v1_social_proto_depIdxs = []int32{
-	2, // 0: api.v1.GetUserProfileResponse.profile:type_name -> api.v1.UserProfile
-	0, // 1: api.v1.SocialService.GetUserProfile:input_type -> api.v1.GetUserProfileRequest
-	1, // 2: api.v1.SocialService.GetUserProfile:output_type -> api.v1.GetUserProfileResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	3, // 0: api.v1.GetUserProfileResponse.profile:type_name -> api.v1.UserProfile
+	0, // 1: api.v1.SocialService.GetUserProfileByUserId:input_type -> api.v1.GetUserProfileByIdRequest
+	1, // 2: api.v1.SocialService.GetUserProfileByUsername:input_type -> api.v1.GetUserProfileByUsernameRequest
+	2, // 3: api.v1.SocialService.GetUserProfileByUserId:output_type -> api.v1.GetUserProfileResponse
+	2, // 4: api.v1.SocialService.GetUserProfileByUsername:output_type -> api.v1.GetUserProfileResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -235,7 +285,7 @@ func file_v1_social_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_v1_social_proto_rawDesc), len(file_v1_social_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
