@@ -6,11 +6,17 @@ option go_package = "github.com/cosmo-services/grpc-contracts/gen/api/v1";
 // Social service
 service SocialService {
   // Get user profile by id
-  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
+  rpc GetUserProfileByUserId(GetUserProfileByIdRequest) returns (GetUserProfileResponse);
+  // Get user profile by username
+  rpc GetUserProfileByUsername(GetUserProfileByUsernameRequest) returns (GetUserProfileResponse);
 }
 
-message GetUserProfileRequest {
+message GetUserProfileByIdRequest {
   string user_id = 1;
+}
+
+message GetUserProfileByUsernameRequest {
+  string username = 1;
 }
 
 message GetUserProfileResponse {
