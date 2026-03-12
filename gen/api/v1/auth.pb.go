@@ -249,7 +249,7 @@ const file_v1_auth_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\x03R\tcreatedAt2\xa1\x01\n" +
 	"\vAuthService\x12B\n" +
 	"\vGetUserById\x12\x1a.api.v1.GetUserByIdRequest\x1a\x17.api.v1.GetUserResponse\x12N\n" +
-	"\x11GetUserByusername\x12 .api.v1.GetUserByUsernameRequest\x1a\x17.api.v1.GetUserResponseB5Z3github.com/cosmo-services/grpc-contracts/gen/api/v1b\x06proto3"
+	"\x11GetUserByUsername\x12 .api.v1.GetUserByUsernameRequest\x1a\x17.api.v1.GetUserResponseB5Z3github.com/cosmo-services/grpc-contracts/gen/api/v1b\x06proto3"
 
 var (
 	file_v1_auth_proto_rawDescOnce sync.Once
@@ -273,9 +273,9 @@ var file_v1_auth_proto_goTypes = []any{
 var file_v1_auth_proto_depIdxs = []int32{
 	3, // 0: api.v1.GetUserResponse.user:type_name -> api.v1.UserData
 	0, // 1: api.v1.AuthService.GetUserById:input_type -> api.v1.GetUserByIdRequest
-	1, // 2: api.v1.AuthService.GetUserByusername:input_type -> api.v1.GetUserByUsernameRequest
+	1, // 2: api.v1.AuthService.GetUserByUsername:input_type -> api.v1.GetUserByUsernameRequest
 	2, // 3: api.v1.AuthService.GetUserById:output_type -> api.v1.GetUserResponse
-	2, // 4: api.v1.AuthService.GetUserByusername:output_type -> api.v1.GetUserResponse
+	2, // 4: api.v1.AuthService.GetUserByUsername:output_type -> api.v1.GetUserResponse
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
