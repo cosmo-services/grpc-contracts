@@ -7,11 +7,17 @@ option go_package = "github.com/cosmo-services/grpc-contracts/gen/api/v1";
 // Auth Service
 service AuthService {
   // Get user data by id  
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUserById(GetUserByIdRequest) returns (GetUserResponse);
+  // Get user data by username
+  rpc GetUserByusername(GetUserByUsernameRequest) returns (GetUserResponse);
 }
 
-message GetUserRequest {
+message GetUserByIdRequest {
   string user_id = 1;
+}
+
+message GetUserByUsernameRequest {
+  string username = 1;
 }
 
 message GetUserResponse {

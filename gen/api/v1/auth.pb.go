@@ -21,27 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetUserRequest struct {
+type GetUserByIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetUserRequest) Reset() {
-	*x = GetUserRequest{}
+func (x *GetUserByIdRequest) Reset() {
+	*x = GetUserByIdRequest{}
 	mi := &file_v1_auth_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetUserRequest) String() string {
+func (x *GetUserByIdRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserRequest) ProtoMessage() {}
+func (*GetUserByIdRequest) ProtoMessage() {}
 
-func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
+func (x *GetUserByIdRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_v1_auth_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,14 +53,58 @@ func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
-func (*GetUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserByIdRequest.ProtoReflect.Descriptor instead.
+func (*GetUserByIdRequest) Descriptor() ([]byte, []int) {
 	return file_v1_auth_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetUserRequest) GetUserId() string {
+func (x *GetUserByIdRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+type GetUserByUsernameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserByUsernameRequest) Reset() {
+	*x = GetUserByUsernameRequest{}
+	mi := &file_v1_auth_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserByUsernameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserByUsernameRequest) ProtoMessage() {}
+
+func (x *GetUserByUsernameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_auth_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserByUsernameRequest.ProtoReflect.Descriptor instead.
+func (*GetUserByUsernameRequest) Descriptor() ([]byte, []int) {
+	return file_v1_auth_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetUserByUsernameRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
 	}
 	return ""
 }
@@ -74,7 +118,7 @@ type GetUserResponse struct {
 
 func (x *GetUserResponse) Reset() {
 	*x = GetUserResponse{}
-	mi := &file_v1_auth_proto_msgTypes[1]
+	mi := &file_v1_auth_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +130,7 @@ func (x *GetUserResponse) String() string {
 func (*GetUserResponse) ProtoMessage() {}
 
 func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_auth_proto_msgTypes[1]
+	mi := &file_v1_auth_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +143,7 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
 func (*GetUserResponse) Descriptor() ([]byte, []int) {
-	return file_v1_auth_proto_rawDescGZIP(), []int{1}
+	return file_v1_auth_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetUserResponse) GetUser() *UserData {
@@ -122,7 +166,7 @@ type UserData struct {
 
 func (x *UserData) Reset() {
 	*x = UserData{}
-	mi := &file_v1_auth_proto_msgTypes[2]
+	mi := &file_v1_auth_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -134,7 +178,7 @@ func (x *UserData) String() string {
 func (*UserData) ProtoMessage() {}
 
 func (x *UserData) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_auth_proto_msgTypes[2]
+	mi := &file_v1_auth_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -147,7 +191,7 @@ func (x *UserData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserData.ProtoReflect.Descriptor instead.
 func (*UserData) Descriptor() ([]byte, []int) {
-	return file_v1_auth_proto_rawDescGZIP(), []int{2}
+	return file_v1_auth_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *UserData) GetId() string {
@@ -189,9 +233,11 @@ var File_v1_auth_proto protoreflect.FileDescriptor
 
 const file_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\rv1/auth.proto\x12\x06api.v1\")\n" +
-	"\x0eGetUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"7\n" +
+	"\rv1/auth.proto\x12\x06api.v1\"-\n" +
+	"\x12GetUserByIdRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"6\n" +
+	"\x18GetUserByUsernameRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"7\n" +
 	"\x0fGetUserResponse\x12$\n" +
 	"\x04user\x18\x01 \x01(\v2\x10.api.v1.UserDataR\x04user\"\x88\x01\n" +
 	"\bUserData\x12\x0e\n" +
@@ -200,9 +246,10 @@ const file_v1_auth_proto_rawDesc = "" +
 	"\busername\x18\x03 \x01(\tR\busername\x12\x1b\n" +
 	"\tis_active\x18\x04 \x01(\bR\bisActive\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\x03R\tcreatedAt2I\n" +
-	"\vAuthService\x12:\n" +
-	"\aGetUser\x12\x16.api.v1.GetUserRequest\x1a\x17.api.v1.GetUserResponseB5Z3github.com/cosmo-services/grpc-contracts/gen/api/v1b\x06proto3"
+	"created_at\x18\x05 \x01(\x03R\tcreatedAt2\xa1\x01\n" +
+	"\vAuthService\x12B\n" +
+	"\vGetUserById\x12\x1a.api.v1.GetUserByIdRequest\x1a\x17.api.v1.GetUserResponse\x12N\n" +
+	"\x11GetUserByusername\x12 .api.v1.GetUserByUsernameRequest\x1a\x17.api.v1.GetUserResponseB5Z3github.com/cosmo-services/grpc-contracts/gen/api/v1b\x06proto3"
 
 var (
 	file_v1_auth_proto_rawDescOnce sync.Once
@@ -216,18 +263,21 @@ func file_v1_auth_proto_rawDescGZIP() []byte {
 	return file_v1_auth_proto_rawDescData
 }
 
-var file_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_v1_auth_proto_goTypes = []any{
-	(*GetUserRequest)(nil),  // 0: api.v1.GetUserRequest
-	(*GetUserResponse)(nil), // 1: api.v1.GetUserResponse
-	(*UserData)(nil),        // 2: api.v1.UserData
+	(*GetUserByIdRequest)(nil),       // 0: api.v1.GetUserByIdRequest
+	(*GetUserByUsernameRequest)(nil), // 1: api.v1.GetUserByUsernameRequest
+	(*GetUserResponse)(nil),          // 2: api.v1.GetUserResponse
+	(*UserData)(nil),                 // 3: api.v1.UserData
 }
 var file_v1_auth_proto_depIdxs = []int32{
-	2, // 0: api.v1.GetUserResponse.user:type_name -> api.v1.UserData
-	0, // 1: api.v1.AuthService.GetUser:input_type -> api.v1.GetUserRequest
-	1, // 2: api.v1.AuthService.GetUser:output_type -> api.v1.GetUserResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	3, // 0: api.v1.GetUserResponse.user:type_name -> api.v1.UserData
+	0, // 1: api.v1.AuthService.GetUserById:input_type -> api.v1.GetUserByIdRequest
+	1, // 2: api.v1.AuthService.GetUserByusername:input_type -> api.v1.GetUserByUsernameRequest
+	2, // 3: api.v1.AuthService.GetUserById:output_type -> api.v1.GetUserResponse
+	2, // 4: api.v1.AuthService.GetUserByusername:output_type -> api.v1.GetUserResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -244,7 +294,7 @@ func file_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_v1_auth_proto_rawDesc), len(file_v1_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
