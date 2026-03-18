@@ -155,10 +155,12 @@ func (x *GetUserProfileResponse) GetProfile() *UserProfile {
 
 type UserProfile struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	AvatarUrl     string                 `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
+	ProfileId     string                 `protobuf:"bytes,1,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Username      string                 `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	AvatarUrl     string                 `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
+	IsActive      bool                   `protobuf:"varint,6,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -193,9 +195,16 @@ func (*UserProfile) Descriptor() ([]byte, []int) {
 	return file_v1_social_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *UserProfile) GetId() string {
+func (x *UserProfile) GetProfileId() string {
 	if x != nil {
-		return x.Id
+		return x.ProfileId
+	}
+	return ""
+}
+
+func (x *UserProfile) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -221,6 +230,13 @@ func (x *UserProfile) GetAvatarUrl() string {
 	return ""
 }
 
+func (x *UserProfile) GetIsActive() bool {
+	if x != nil {
+		return x.IsActive
+	}
+	return false
+}
+
 var File_v1_social_proto protoreflect.FileDescriptor
 
 const file_v1_social_proto_rawDesc = "" +
@@ -231,13 +247,16 @@ const file_v1_social_proto_rawDesc = "" +
 	"\x1fGetUserProfileByUsernameRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\"G\n" +
 	"\x16GetUserProfileResponse\x12-\n" +
-	"\aprofile\x18\x01 \x01(\v2\x13.api.v1.UserProfileR\aprofile\"{\n" +
-	"\vUserProfile\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12!\n" +
-	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x1d\n" +
+	"\aprofile\x18\x01 \x01(\v2\x13.api.v1.UserProfileR\aprofile\"\xc0\x01\n" +
+	"\vUserProfile\x12\x1d\n" +
 	"\n" +
-	"avatar_url\x18\x04 \x01(\tR\tavatarUrl2\xd1\x01\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1a\n" +
+	"\busername\x18\x03 \x01(\tR\busername\x12!\n" +
+	"\fdisplay_name\x18\x04 \x01(\tR\vdisplayName\x12\x1d\n" +
+	"\n" +
+	"avatar_url\x18\x05 \x01(\tR\tavatarUrl\x12\x1b\n" +
+	"\tis_active\x18\x06 \x01(\bR\bisActive2\xd1\x01\n" +
 	"\rSocialService\x12[\n" +
 	"\x16GetUserProfileByUserId\x12!.api.v1.GetUserProfileByIdRequest\x1a\x1e.api.v1.GetUserProfileResponse\x12c\n" +
 	"\x18GetUserProfileByUsername\x12'.api.v1.GetUserProfileByUsernameRequest\x1a\x1e.api.v1.GetUserProfileResponseB5Z3github.com/cosmo-services/grpc-contracts/gen/api/v1b\x06proto3"
