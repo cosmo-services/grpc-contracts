@@ -24,7 +24,7 @@ message GetUserProfileResponse {
 }
 
 message UserProfile {
-  string id = 1;
+  string profile_id = 1;
   string user_id = 2;
   string username = 3;
   string display_name = 4;
